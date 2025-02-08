@@ -32,9 +32,8 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'drf_yasg',
     'corsheaders',
-    # 'payme',
-    # 'click_up',
-    # 'paynet',
+    'payme',
+    'click_up',
 
     # Local apps
     'transactions',
@@ -133,3 +132,55 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_SERVICE_URL = config('AUTH_SERVICE_URL')
+
+EDUCATION_SERVICE_URL = config('EDUCATION_SERVICE_URL')
+
+DOMAIN = config('DOMAIN')
+
+PAYME_ID = config('PAYME_ID')
+PAYME_KEY = config('PAYME_KEY')
+PAYME_ACCOUNT_FIELD = "id"
+PAYME_AMOUNT_FIELD = "amount"
+PAYME_ACCOUNT_MODEL = "transactions.models.Payment"
+PAYME_ONE_TIME_PAYMENT = True
+
+CLICK_SERVICE_ID = config('CLICK_SERVICE_ID')
+CLICK_MERCHANT_ID = config('CLICK_MERCHANT_ID')
+CLICK_SECRET_KEY = config('CLICK_SECRET_KEY')
+CLICK_ACCOUNT_MODEL = "transactions.models.Payment" # your order model path.
+CLICK_AMOUNT_FIELD = "amount" # your amount field that's belongs to your order model
+
+# PAYZE_KEY = config('PAYZE_KEY')
+# PAYZE_SECRET = config('PAYZE_SECRET')
+
+CSRF_COOKIE_DOMAIN = config('CSRF_COOKIE_DOMAIN')
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+
+SERVER_NAME = config('SERVER_NAME')
+
+CORS_ALLOW_ALL_ORIGINS = False
+CORS_ALLOWED_ORIGINS = config('CORS_ALLOWED_ORIGINS').split(' ')
+CSRF_TRUSTED_ORIGINS = config('CSRF_TRUSTED_ORIGINS').split(' ')
+CORS_ALLOW_CREDENTIALS = config('CORS_ALLOW_CREDENTIALS', cast=bool, default=False)
+
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'ERROR',
+            'class': 'logging.FileHandler',
+            'filename': 'errors.log',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+    },
+}
