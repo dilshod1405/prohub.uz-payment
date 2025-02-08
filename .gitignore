@@ -91,3 +91,8 @@ ehthumbs.db
 
 .db_data
 db_data
+
+# Ignore staticfiles
+/staticfiles/
+staticfiles
+.staticfiles
